@@ -27,10 +27,13 @@ function authForm(mode) {
 
                     <div class = "input-box">
                         <input type = "email" id = "loginEmail" class = "auth-input" placeholder = "Email" />
+                        <small id = "mail-error" style = "color: red; display: block;"></small>
                     </div>
 
                     <div class = "input-box">
                         <input type = "password" id = "loginPassword" class = "auth-input" placeholder = "Password" />
+                        <small id="pass-error" style="color: red; display: block;"></small>
+                        
                     </div>
 
                     <button type = "submit" id = "comeIn" class = "come-in"> Enter </button>
@@ -65,15 +68,18 @@ function authForm(mode) {
                     <h1 class = "auth-title"> Create Account </h1>
 
                     <div class = "input-box">
-                        <input type = "text" id = "signupUsername" class = "auth-input" placeholder = "Username" />
+                        <input type = "text" id = "signupUsername" class = "auth-input" placeholder = "Fullname" />
+                        <small id="user-error" style="color: red; display: block;"></small>
                     </div>
 
                     <div class = "input-box">
                         <input type = "email" id = "signupEmail" class = "auth-input" placeholder = "Email" />
+                        <small id="mail-error" style="color: red; display: block;"></small>
                     </div>
 
                     <div class = "input-box">
-                        <input type = "password" id = "signupPassword" class = "auth-input" placeholder = "Password" a/>
+                        <input type = "password" id = "signupPassword" class = "auth-input" placeholder = "Password" />
+                        <small id="pass-error" style="color: red; display: block;"></small>
                     </div>
 
                     <button type = "submit" id = "comeIn" class = "come-in"> Enter </button>
@@ -99,7 +105,25 @@ form.addEventListener('submit' , function (event){
     const signupEmail = document.getElementById('signupEmail');
     const signupPassword = document.getElementById('signupPassword');
 
-    
+    const userError = document.getElementById('user-error');
+    const mailError = document.getElementById('mail-error');
+    const passError = document.getElementById('pass-error');
+
+    userError.textContent = '' ;
+    mailError.textContent = '' ;
+    passError.textContent = '' ;
+
+    if(userError === ''){
+        userError.textContent = 'The Full name is Empty Please Enter your Full name'
+    }
+    if(loginEmail === ''){
+        mailError.textContent = 'The Email is Empty Please Enter your Email' ;
+    }
+
+    if(loginPassword === ''){
+        passError.textContent = 'The Password is Empty Please Enter your Password';
+    }
+
 
 
 })
