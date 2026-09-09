@@ -100,7 +100,18 @@ function loginEvent(){
         authEvent('signup');
     })
 
+    form.addEventListener('submit', function (event){
 
+        event.preventDefault();
+
+        const loginEmail = document.getElementById('loginEmail');
+        const loginPassword = document.getElementById('loginPassword');
+
+        const mailError = document.getElementById('login-mail-error');
+        const passError = document.getElementById('login-pass-error');
+
+
+    })
 }
 
 const form = document.getElementById('authForm') ;
