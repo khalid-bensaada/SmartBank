@@ -152,6 +152,31 @@ function signEvent(){
         authEvent('login');
     });
 
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const signupUsername = document.getElementById('signupUsername');
+        const signupEmail = document.getElementById('signupEmail');
+        const signupPassword = document.getElementById('signupPassword');
+
+        const userError = document.getElementById('signup-user-error');
+        const mailError = document.getElementById('signup-mail-error');
+        const passError = document.getElementById('signup-pass-error');
+
+
+        userError.textContent = '';
+        mailError.textContent = '';
+        passError.textContent = '';
+
+        const usernameValue = signupUsername.value.trim();
+        const emailValue = signupEmail.value.trim();
+        const passwordValue = signupPassword.value.trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        let hasError = false;
+    })
+
 }
 
 const form = document.getElementById('authForm') ;
