@@ -141,6 +141,19 @@ function loginEvent(){
     })
 }
 
+function signEvent(){
+
+    const form = document.getElementById('authForm');
+    const goToLoginBtn = document.getElementById('goToLogin');
+
+
+    goToLoginBtn.addEventListener('click', function () {
+        document.getElementById('app').innerHTML = authForm('login');
+        authEvent('login');
+    });
+
+}
+
 const form = document.getElementById('authForm') ;
 
 form.addEventListener('submit' , function (event) {
