@@ -43,7 +43,8 @@ function authForm(mode) {
             </form>
         `;
 
-    } else if (mode === 'signup') {
+    }
+    else if (mode === 'signup') {
 
         return `
             <form id = "authForm" class = "auth-form" >
@@ -94,7 +95,7 @@ function authForm(mode) {
 
 const form = document.getElementById('authForm') ;
 
-form.addEventListener('submit' , function (event){
+form.addEventListener('submit' , function (event) {
 
     event.preventDefault();
 
@@ -103,29 +104,37 @@ form.addEventListener('submit' , function (event){
 
     const signupUsername = document.getElementById('signupUsername');
     const signupEmail = document.getElementById('signupEmail');
+    const emailValue = signupEmail.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     const signupPassword = document.getElementById('signupPassword');
 
     const userError = document.getElementById('user-error');
     const mailError = document.getElementById('mail-error');
     const passError = document.getElementById('pass-error');
 
-    userError.textContent = '' ;
-    mailError.textContent = '' ;
-    passError.textContent = '' ;
+    userError.textContent = '';
+    mailError.textContent = '';
+    passError.textContent = '';
 
-    if(userError === ''){
+    if (!emailRegex.test(emailValue)) {
+        mailError.textContent = 'Please Enter The correct Structure of Email like (name@domain.com)';
+        return;
+    }
+
+    if (userError === '') {
         userError.textContent = 'The Full name is Empty Please Enter your Full name'
     }
-    if(loginEmail === ''){
-        mailError.textContent = 'The Email is Empty Please Enter your Email' ;
+    if (loginEmail === '') {
+        mailError.textContent = 'The Email is Empty Please Enter your Email';
     }
 
-    if(loginPassword === ''){
+    if (loginPassword === '') {
         passError.textContent = 'The Password is Empty Please Enter your Password';
     }
 
-
-
 })
+
+
+
 
 
