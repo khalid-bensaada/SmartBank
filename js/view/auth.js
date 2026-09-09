@@ -4,89 +4,77 @@ function authForm(mode) {
     if (mode === 'login') {
 
         return `
-            <form id = "authLogin" class = "auth-form">
-
-                <div class = "auth-left">
-
-                    <h1 class = "welcome"> WELCOME TO SMART BANK </h1>
-
-                    <p class = "secure"> Secure and simple banking </p>
-                    <p class = "secure"> at your fingertips. </p>
-                    <p class = "secure"> Log in to manage your </p>
-                    <p class = "secure"> accounts with ease. </p>
-
-                    <button type = "submit" id = "goToSignup" class = "account-btn">
+            <form id="authLogin" class="auth-form">
+ 
+                <div class="auth-left">
+                    <h1 class="welcome">WELCOME TO SMART BANK</h1>
+                    <p class="secure">Secure and simple banking</p>
+                    <p class="secure">at your fingertips.</p>
+                    <p class="secure">Log in to manage your</p>
+                    <p class="secure">accounts with ease.</p>
+ 
+                    <button type="button" id="goToSignup" class="account-btn">
                         I don't have an account
                     </button>
-
                 </div>
-
-                <div class = "auth-right">
-
-                    <h1 class = "auth-title"> Sign in</h1>
-
-                    <div class = "input-box">
-                        <input type = "email" id = "loginEmail" class = "auth-input" placeholder = "Email" />
-                        <small id = "mail-error" style = "color: red; display: block;"></small>
+ 
+                <div class="auth-right">
+                    <h1 class="auth-title">Sign in</h1>
+ 
+                    <div class="input-box">
+                        <input type="email" id="loginEmail" class="auth-input" placeholder="Email" />
+                        <small id="login-mail-error" style="color: red; display: block;"></small>
                     </div>
-
-                    <div class = "input-box">
-                        <input type = "password" id = "loginPassword" class = "auth-input" placeholder = "Password" />
-                        <small id="pass-error" style="color: red; display: block;"></small>
-                        
+ 
+                    <div class="input-box">
+                        <input type="password" id="loginPassword" class="auth-input" placeholder="Password" />
+                        <small id="login-pass-error" style="color: red; display: block;"></small>
                     </div>
-
-                    <button type = "submit" id = "comeIn" class = "come-in"> Enter </button>
-
+ 
+                    <button type="submit" id="comeIn" class="come-in">Enter</button>
                 </div>
-
+ 
             </form>
         `;
-
     }
     else if (mode === 'signup') {
 
         return `
-            <form id = "authForm" class = "auth-form" >
-
-                <div class = "auth-left">
-
-                    <h1 class = "welcome"> WELCOME TO SMART BANK </h1>
-
-                    <p class = "secure"> Secure and simple banking </p>
-                    <p class = "secure"> at your fingertips. </p>
-                    <p class = "secure"> Log in to manage your </p>
-                    <p class = "secure"> accounts with ease. </p>
-
-                    <button type = "submit" id = "goToLogin" class = "account-btn">
+            <form id="authForm" class="auth-form">
+ 
+                <div class="auth-left">
+                    <h1 class="welcome">WELCOME TO SMART BANK</h1>
+                    <p class="secure">Secure and simple banking</p>
+                    <p class="secure">at your fingertips.</p>
+                    <p class="secure">Log in to manage your</p>
+                    <p class="secure">accounts with ease.</p>
+ 
+                    <button type="button" id="goToLogin" class="account-btn">
                         I have an account
                     </button>
-
                 </div>
-
-                <div class = "auth-right">
-
-                    <h1 class = "auth-title"> Create Account </h1>
-
-                    <div class = "input-box">
-                        <input type = "text" id = "signupUsername" class = "auth-input" placeholder = "Fullname" />
-                        <small id="user-error" style="color: red; display: block;"></small>
+ 
+                <div class="auth-right">
+                    <h1 class="auth-title">Create Account</h1>
+ 
+                    <div class="input-box">
+                        <input type="text" id="signupUsername" class="auth-input" placeholder="Fullname" />
+                        <small id="signup-user-error" style="color: red; display: block;"></small>
                     </div>
-
-                    <div class = "input-box">
-                        <input type = "email" id = "signupEmail" class = "auth-input" placeholder = "Email" />
-                        <small id="mail-error" style="color: red; display: block;"></small>
+ 
+                    <div class="input-box">
+                        <input type="email" id="signupEmail" class="auth-input" placeholder="Email" />
+                        <small id="signup-mail-error" style="color: red; display: block;"></small>
                     </div>
-
-                    <div class = "input-box">
-                        <input type = "password" id = "signupPassword" class = "auth-input" placeholder = "Password" />
-                        <small id="pass-error" style="color: red; display: block;"></small>
+ 
+                    <div class="input-box">
+                        <input type="password" id="signupPassword" class="auth-input" placeholder="Password" />
+                        <small id="signup-pass-error" style="color: red; display: block;"></small>
                     </div>
-
-                    <button type = "submit" id = "comeIn" class = "come-in"> Enter </button>
-
+ 
+                    <button type="submit" id="comeIn" class="come-in">Enter</button>
                 </div>
-
+ 
             </form>
         `;
     }
