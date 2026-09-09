@@ -175,50 +175,39 @@ function signEvent(){
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
         let hasError = false;
+
+        if (usernameValue === '') {
+            userError.textContent = 'Please enter your full name';
+            hasError = true;
+        } else if (usernameValue.length < 5) {
+            userError.textContent = 'Full name must be at least 5 characters';
+            hasError = true;
+        }
+
+        if (emailValue === '') {
+            mailError.textContent = 'Please enter your email';
+            hasError = true;
+        } else if (!emailRegex.test(emailValue)) {
+            mailError.textContent = 'Please enter a valid email (name@domain.com)';
+            hasError = true;
+        }
+
+        if (passwordValue === '') {
+            passError.textContent = 'Please enter your password';
+            hasError = true;
+        } else if (passwordValue.length < 6) {
+            passError.textContent = 'Password must be at least 6 characters';
+            hasError = true;
+        }
+
+        if (hasError){
+            return;
+        }
     })
 
 }
 
-const form = document.getElementById('authForm') ;
 
-form.addEventListener('submit' , function (event) {
-
-    event.preventDefault();
-
-    const loginEmail = document.getElementById('loginEmail');
-    const loginPassword = document.getElementById('loginPassword');
-
-    const signupUsername = document.getElementById('signupUsername');
-    const signupEmail = document.getElementById('signupEmail');
-    const emailValue = signupEmail.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    const signupPassword = document.getElementById('signupPassword');
-
-    const userError = document.getElementById('user-error');
-    const mailError = document.getElementById('mail-error');
-    const passError = document.getElementById('pass-error');
-
-    userError.textContent = '';
-    mailError.textContent = '';
-    passError.textContent = '';
-
-    if (!emailRegex.test(emailValue)) {
-        mailError.textContent = 'Please Enter The correct Structure of Email like (name@domain.com)';
-        return;
-    }
-
-    if (userError === '') {
-        userError.textContent = 'The Full name is Empty Please Enter your Full name'
-    }
-    if (loginEmail === '') {
-        mailError.textContent = 'The Email is Empty Please Enter your Email';
-    }
-
-    if (loginPassword === '') {
-        passError.textContent = 'The Password is Empty Please Enter your Password';
-    }
-
-})
 
 
 
