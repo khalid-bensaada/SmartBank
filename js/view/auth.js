@@ -110,6 +110,24 @@ function loginEvent(){
         const mailError = document.getElementById('login-mail-error');
         const passError = document.getElementById('login-pass-error');
 
+        mailError.textContent = '';
+        passError.textContent = '';
+
+        const emailValue = loginEmail.value.trim();
+        const passwordValue = loginPassword.value.trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        let hasError = false;
+
+        if (emailValue === '') {
+            mailError.textContent = 'Please enter your email';
+            hasError = true;
+        } else if (!emailRegex.test(emailValue)) {
+            mailError.textContent = 'Please enter a valid email (name@domain.com)';
+            hasError = true;
+        }
+
 
     })
 }
