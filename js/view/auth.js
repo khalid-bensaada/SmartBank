@@ -128,6 +128,15 @@ function loginEvent(){
             hasError = true;
         }
 
+        if (passwordValue === '') {
+            passError.textContent = 'Please enter your password';
+            hasError = true;
+        }
+
+        if (hasError) {
+            return;
+        }
+
 
     })
 }
