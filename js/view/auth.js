@@ -90,6 +90,18 @@ function authEvent(mode){
     }
 }
 
+function loginEvent(){
+
+    const form = document.getElementById('authLogin');
+    const goToSignup = document.getElementById('goToSignup');
+
+    goToSignup.addEventListener('click',function(){
+        document.getElementById('app').innerHTML = authForm('signup');
+        authEvent('signup');
+    })
+
+
+}
 
 const form = document.getElementById('authForm') ;
 
