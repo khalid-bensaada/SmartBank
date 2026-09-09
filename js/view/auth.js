@@ -80,6 +80,16 @@ function authForm(mode) {
     }
 }
 
+function authEvent(mode){
+
+    if(mode === 'login'){
+        loginEvent();
+    }
+    else if(mode === 'signup'){
+        signEvent();
+    }
+}
+
 
 const form = document.getElementById('authForm') ;
 
