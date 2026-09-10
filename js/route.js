@@ -1,10 +1,11 @@
 import { getUsers, getCurrentUser } from './storage.js';
 import { authForm, authEvent } from './view/auth.js';
 import { dashboard, renderActivityList } from './view/dashboard.js';
+import {offersPage} from "./view/offers.js";
 
 const appContainer = document.getElementById('app');
 
-const PUBLIC_ROUTES = ['login', 'signup'];
+const routs = ['login', 'signup'];
 
 function getCurrentRoute() {
     const hash = window.location.hash.replace('#', '');
@@ -16,13 +17,13 @@ function renderRoute() {
     const user = getCurrentUser();
 
 
-    if (!user && !PUBLIC_ROUTES.includes(route)) {
+    if (!user && !routs.includes(route)) {
         window.location.hash = '#login';
         return;
     }
 
 
-    if (user && PUBLIC_ROUTES.includes(route)) {
+    if (user && routs.includes(route)) {
         window.location.hash = '#dashboard';
         return;
     }
@@ -40,6 +41,11 @@ function renderRoute() {
 
         case 'dashboard':
             appContainer.innerHTML = dashboard(user);
+            renderActivityList();
+            break;
+
+        case 'offers':
+            appContainer.innerHTML = offersPage(user);
             renderActivityList();
             break;
 
