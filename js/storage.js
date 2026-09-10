@@ -12,12 +12,12 @@ export function saveUser(user) {
 
 export function emailExists(email) {
     const users = getUsers();
-    return users.some(u => u.email === email);
+    return users.some(k => k.email === email);
 }
 
 export function getUserByEmail(email) {
     const users = getUsers();
-    return users.find(u => u.email === email) || null;
+    return users.find(k => k.email === email) || null;
 }
 
 export function setCurrentUser(user) {
@@ -31,4 +31,17 @@ export function getCurrentUser() {
 
 export function logoutUser() {
     localStorage.removeItem('currentUser');
+}
+
+
+export function getHistory() {
+    const history = localStorage.getItem('history');
+    return history ? JSON.parse(history) : [];
+}
+
+export function addHistoryItem(item) {
+
+    const history = getHistory();
+    history.unshift(item); // newest first
+    localStorage.setItem('history', JSON.stringify(history));
 }

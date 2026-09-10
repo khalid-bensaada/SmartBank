@@ -1,86 +1,91 @@
+import { emailExists, saveUser, setCurrentUser, getUserByEmail } from '../storage.js';
 
-function authForm(mode) {
+export function authForm(mode) {
 
     if (mode === 'login') {
 
         return `
-            <form id="authLogin" class="auth-form">
- 
-                <div class="auth-left">
-                    <h1 class="welcome">WELCOME TO SMART BANK</h1>
-                    <p class="secure">Secure and simple banking</p>
-                    <p class="secure">at your fingertips.</p>
-                    <p class="secure">Log in to manage your</p>
-                    <p class="secure">accounts with ease.</p>
- 
-                    <button type="button" id="goToSignup" class="account-btn">
-                        I don't have an account
-                    </button>
-                </div>
- 
-                <div class="auth-right">
-                    <h1 class="auth-title">Sign in</h1>
- 
-                    <div class="input-box">
-                        <input type="email" id="loginEmail" class="auth-input" placeholder="Email" />
-                        <small id="login-mail-error" style="color: red; display: block;"></small>
+            <div class="auth-page">
+                <form id="authLogin" class="auth-form">
+
+                    <div class="auth-left">
+                        <h1 class="welcome">WELCOME TO SMART BANK</h1>
+                        <p class="secure">Secure and simple banking</p>
+                        <p class="secure">at your fingertips.</p>
+                        <p class="secure">Log in to manage your</p>
+                        <p class="secure">accounts with ease.</p>
+
+                        <button type="button" id="goToSignup" class="account-btn">
+                            I don't have an account
+                        </button>
                     </div>
- 
-                    <div class="input-box">
-                        <input type="password" id="loginPassword" class="auth-input" placeholder="Password" />
-                        <small id="login-pass-error" style="color: red; display: block;"></small>
+
+                    <div class="auth-right">
+                        <h1 class="auth-title">Sign in</h1>
+
+                        <div class="input-box">
+                            <input type="email" id="loginEmail" class="auth-input" placeholder="Email" />
+                            <small id="login-mail-error" style="color: red; display: block;"></small>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="password" id="loginPassword" class="auth-input" placeholder="Password" />
+                            <small id="login-pass-error" style="color: red; display: block;"></small>
+                        </div>
+
+                        <button type="submit" id="comeIn" class="come-in">Enter</button>
                     </div>
- 
-                    <button type="submit" id="comeIn" class="come-in">Enter</button>
-                </div>
- 
-            </form>
+
+                </form>
+            </div>
         `;
     }
     else if (mode === 'signup') {
 
         return `
-            <form id="authForm" class="auth-form">
- 
-                <div class="auth-left">
-                    <h1 class="welcome">WELCOME TO SMART BANK</h1>
-                    <p class="secure">Secure and simple banking</p>
-                    <p class="secure">at your fingertips.</p>
-                    <p class="secure">Log in to manage your</p>
-                    <p class="secure">accounts with ease.</p>
- 
-                    <button type="button" id="goToLogin" class="account-btn">
-                        I have an account
-                    </button>
-                </div>
- 
-                <div class="auth-right">
-                    <h1 class="auth-title">Create Account</h1>
- 
-                    <div class="input-box">
-                        <input type="text" id="signupUsername" class="auth-input" placeholder="Fullname" />
-                        <small id="signup-user-error" style="color: red; display: block;"></small>
+            <div class="auth-page">
+                <form id="authForm" class="auth-form">
+
+                    <div class="auth-left">
+                        <h1 class="welcome">WELCOME TO SMART BANK</h1>
+                        <p class="secure">Secure and simple banking</p>
+                        <p class="secure">at your fingertips.</p>
+                        <p class="secure">Log in to manage your</p>
+                        <p class="secure">accounts with ease.</p>
+
+                        <button type="button" id="goToLogin" class="account-btn">
+                            I have an account
+                        </button>
                     </div>
- 
-                    <div class="input-box">
-                        <input type="email" id="signupEmail" class="auth-input" placeholder="Email" />
-                        <small id="signup-mail-error" style="color: red; display: block;"></small>
+
+                    <div class="auth-right">
+                        <h1 class="auth-title">Create Account</h1>
+
+                        <div class="input-box">
+                            <input type="text" id="signupUsername" class="auth-input" placeholder="Fullname" />
+                            <small id="signup-user-error" style="color: #ff0000; display: block;"></small>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="email" id="signupEmail" class="auth-input" placeholder="Email" />
+                            <small id="signup-mail-error" style="color: red; display: block;"></small>
+                        </div>
+
+                        <div class="input-box">
+                            <input type="password" id="signupPassword" class="auth-input" placeholder="Password" />
+                            <small id="signup-pass-error" style="color: red; display: block;"></small>
+                        </div>
+
+                        <button type="submit" id="comeIn" class="come-in">Enter</button>
                     </div>
- 
-                    <div class="input-box">
-                        <input type="password" id="signupPassword" class="auth-input" placeholder="Password" />
-                        <small id="signup-pass-error" style="color: red; display: block;"></small>
-                    </div>
- 
-                    <button type="submit" id="comeIn" class="come-in">Enter</button>
-                </div>
- 
-            </form>
+
+                </form>
+            </div>
         `;
     }
 }
 
-function authEvent(mode){
+export function authEvent(mode){
 
     if(mode === 'login'){
         loginEvent();
@@ -90,7 +95,7 @@ function authEvent(mode){
     }
 }
 
-function loginEvent(){
+export function loginEvent(){
 
     const form = document.getElementById('authLogin');
     const goToSignup = document.getElementById('goToSignup');
@@ -137,11 +142,21 @@ function loginEvent(){
             return;
         }
 
+        const user = getUserByEmail(emailValue);
+
+        if (!user || user.password !== passwordValue) {
+            mailError.textContent = 'Email or password is incorrect';
+            return;
+        }
+
+        setCurrentUser(user);
+        window.location.hash = '#dashboard';
+
 
     })
 }
 
-function signEvent(){
+export function signEvent(){
 
     const form = document.getElementById('authForm');
     const goToLoginBtn = document.getElementById('goToLogin');
@@ -200,9 +215,25 @@ function signEvent(){
             hasError = true;
         }
 
-        if (hasError){
+        if (hasError) {
             return;
         }
+
+        if (emailExists(emailValue)) {
+            mailError.textContent = 'This email is already registered';
+            return;
+        }
+
+        const newUser = {
+            username: usernameValue,
+            email: emailValue,
+            password: passwordValue,
+            balance: 12450.00
+        };
+
+        saveUser(newUser);
+        setCurrentUser(newUser);
+        window.location.hash = '#dashboard';
     })
 
 }

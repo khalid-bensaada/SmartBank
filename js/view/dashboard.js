@@ -1,10 +1,10 @@
+import { getHistory } from '../storage.js';
+
 export function dashboard(user) {
 
     return `
         <nav class="navbar">
-            <div class="nav-logo">
-                <span class="logo-icon">✔</span>
-            </div>
+            
             <div class="nav-links">
                 <a href="#dashboard" class="nav-link active">Dashboard</a>
                 <a href="#offers" class="nav-link">Offers</a>
@@ -76,3 +76,31 @@ export function dashboard(user) {
     `;
 }
 
+export function renderActivityList() {
+
+    const activityList = document.getElementById('activity-list');
+    const history = getHistory();
+
+
+    const recentItems = history.slice(0, 5);
+
+    if (recentItems.length === 0) {
+        activityList.innerHTML = `<p class="no-activity">No recent activity</p>`;
+        return;
+    }
+
+    activityList.innerHTML = recentItems.map(item => `
+        <div class="activity-item">
+            <div class="activity-info">
+                <span class="activity-icon">${item.icon || ''}</span>
+                <div class="activity-text">
+                    <span class="activity-title">${item.title}</span>
+                    <span class="activity-date">${item.date} • ${item.subtitle || ''}</span>
+                </div>
+            </div>
+            <span class="activity-amount ${item.amount >= 0 ? 'positive' : 'negative'}">
+                ${item.amount >= 0 ? '+' : ''}$${Math.abs(item.amount).toFixed(2)}
+            </span>
+        </div>
+    `).join('');
+}
